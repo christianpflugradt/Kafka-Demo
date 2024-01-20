@@ -1,0 +1,24 @@
+spring:
+    json:
+        trusted:
+            packages: de.pflugradts.kafkademo
+    kafka:
+        consumer:
+            auto-offset-reset: earliest
+            enable-auto-commit: false
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            properties:
+                spring:
+                    json:
+                        type:
+                            mapping: addition:de.pflugradts.kafkademo.Addition,subtraction:de.pflugradts.kafkademo.Subtraction,multiplication:de.pflugradts.kafkademo.Multiplication,division:de.pflugradts.kafkademo.Division
+        producer:
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+            properties:
+                spring:
+                    json:
+                        type:
+                            mapping: addition:de.pflugradts.kafkademo.Addition,subtraction:de.pflugradts.kafkademo.Subtraction,multiplication:de.pflugradts.kafkademo.Multiplication,division:de.pflugradts.kafkademo.Division
+
+kafkademo:
+    topic: arithmetic-operation
